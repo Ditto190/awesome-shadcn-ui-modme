@@ -99,10 +99,15 @@ export default function RootLayout({
         )}
       >
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        <Script id="openpanel-init" strategy="afterInteractive">
+          {`
+            window.op=window.op||function(){var n=[];return new Proxy(function(){arguments.length&&n.push([].slice.call(arguments))},{get:function(t,r){return"q"===r?n:function(){n.push([r].concat([].slice.call(arguments)))}},has:function(t,r){return"q"===r}}) }();
+            window.op('init', { clientId: '36f7882a-39ab-4806-a419-86afd64fdbf6', apiUrl: 'https://api.analytics.birobirobiro.dev', trackScreenViews: true, trackOutgoingLinks: true });
+          `}
+        </Script>
         <Script
-          defer
-          src="https://analytics.birobirobiro.dev/script.js"
-          data-website-id="e08281cb-7e4b-4acd-9298-ae5dfe6525fd"
+          id="openpanel-sdk"
+          src="https://analytics.birobirobiro.dev/op1.js"
           strategy="afterInteractive"
         />
         <Providers>
