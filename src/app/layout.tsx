@@ -2,6 +2,7 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Providers } from "@/providers/providers";
 import { type Metadata, type Viewport } from "next";
+import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import type React from "react";
@@ -98,6 +99,12 @@ export default function RootLayout({
         )}
       >
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        <Script
+          defer
+          src="https://analytics.birobirobiro.dev/script.js"
+          data-website-id="e08281cb-7e4b-4acd-9298-ae5dfe6525fd"
+          strategy="afterInteractive"
+        />
         <Providers>
           <a href="#main" className="skip-link">
             Skip to content
